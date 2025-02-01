@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: LibraryApp
+  datasource:
+    url: jdbc:postgresql://postgres:5432/library_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  quartz:
+    job-store-type: memory
+    scheduler-name: FineScheduler
+  web:
+    resources:
+      add-mappings: false
+security:
+  jwt:
+    secret-key: hnPqSfzVgkMFcaiVATBqfnw9VdxQ/NWF5CF+vftBuoA=
+    expiration-time: 86400000
+logging:
+  level:
+    org.springframework: DEBUG
+    org.springframework.web: TRACE
+    org.springframework.transaction: TRACE
+    org.hibernate: DEBUG
+    root: debug
+    org.hibernate.sql: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.apache.coyote.http11.Http11Processor: TRACE
+    org.apache.tomcat: DEBUG
+    org.apache.coyote: DEBUG
+    org.apache: TRACE
+server:
+  tomcat:
+    connection-timeout: 20000
+    max-http-form-post-size: 20000000
+    keep-alive-timeout: 60000
+    max-http-response-header-size: 1048576
+    max-swallow-size: 50
+  max-http-request-header-size: 512
