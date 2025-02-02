@@ -37,7 +37,7 @@ logging:
     org.apache: TRACE
 server:
   tomcat:
-    connection-timeout: 20000
+    connection-timeout: 60s
     max-http-form-post-size: 20000000
     keep-alive-timeout: 60000
     max-http-response-header-size: 1048576

@@ -13,7 +13,6 @@ import pl.cieszk.booknest.features.auth.domain.dto.LoginRequest;
 import pl.cieszk.booknest.features.auth.domain.dto.RegisterRequest;
 import pl.cieszk.booknest.features.auth.domain.enums.Role;
 import pl.cieszk.booknest.features.auth.mapper.UserMapper;
-import pl.cieszk.booknest.features.auth.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor
