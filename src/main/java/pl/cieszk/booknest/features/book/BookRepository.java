@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import pl.cieszk.booknest.features.book.domain.Book;
 import pl.cieszk.booknest.features.book.domain.dto.BookListDto;
+import pl.cieszk.booknest.features.book.domain.dto.BookResponseDto;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             "LEFT JOIN b.authors a " +
             "GROUP BY b.bookId, b.title, b.genre, b.publishYear, b.isbn, b.language, p.name")
     List<BookListDto> findAllBooksForList();
+
 }

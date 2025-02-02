@@ -2,10 +2,7 @@ package pl.cieszk.booknest.features.author.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import pl.cieszk.booknest.features.book.domain.Book;
 
 import java.util.Set;
@@ -15,6 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Author {
 
     @Id
@@ -34,6 +32,5 @@ public class Author {
     private String biography;
 
     @ManyToMany(mappedBy = "authors")
-    @JsonIgnore
     private Set<Book> books;
 }

@@ -2,10 +2,7 @@ package pl.cieszk.booknest.features.book.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import pl.cieszk.booknest.features.author.domain.Author;
 import pl.cieszk.booknest.features.category.domain.Category;
 import pl.cieszk.booknest.features.publisher.domain.Publisher;
@@ -19,6 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Book {
 
     @Id
@@ -48,30 +46,32 @@ public class Book {
 
     @ManyToOne
     @JoinColumn(name = "publisher_id")
+    @ToString.Exclude
     private Publisher publisher;
 
     @ManyToMany
-    @JsonIgnore
     @JoinTable(
             name = "book_author",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
+    @ToString.Exclude
     private Set<Author> authors;
 
     @ManyToMany
-    @JsonIgnore
     @JoinTable(
             name = "book_category",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
+    @ToString.Exclude
     private List<Category> categories;
 
     @OneToMany(mappedBy = "book")
-    @JsonIgnore
+    @ToString.Exclude
     private Set<BookInstance> bookInstances;
 
     @OneToMany(mappedBy = "book")
+    @ToString.Exclude
     private Set<Review> reviews;
 }

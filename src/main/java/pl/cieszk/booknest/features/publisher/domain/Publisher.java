@@ -2,10 +2,7 @@ package pl.cieszk.booknest.features.publisher.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import pl.cieszk.booknest.features.book.domain.Book;
 
 import java.util.Set;
@@ -35,5 +32,6 @@ public class Publisher {
 
     @OneToMany(mappedBy = "publisher")
     @JsonIgnore
+    @ToString.Exclude
     private Set<Book> books;
 }
