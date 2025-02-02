@@ -42,4 +42,4 @@ server:
     keep-alive-timeout: 60000
     max-http-response-header-size: 1048576
     max-swallow-size: 50
-  max-http-request-header-size: 512
+  max-http-request-header-size: 32768

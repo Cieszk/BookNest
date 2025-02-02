@@ -5,6 +5,7 @@ import org.mapstruct.Mapping;
 import pl.cieszk.booknest.features.auth.domain.User;
 import pl.cieszk.booknest.features.auth.domain.dto.UserDto;
 import pl.cieszk.booknest.features.review.domain.Review;
+import pl.cieszk.booknest.features.review.domain.dto.ReviewRequestDto;
 import pl.cieszk.booknest.features.review.domain.dto.ReviewResponseDto;
 
 import java.util.List;
@@ -19,4 +20,6 @@ public interface ReviewMapper {
     List<ReviewResponseDto> toReviewResponseDtos(List<Review> reviews);
 
     UserDto toUserDto(User user);
+
+    Review toReviewEntity(ReviewRequestDto reviewRequestDto);
 }
