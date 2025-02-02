@@ -12,6 +12,6 @@ public class ReviewResponseDto {
     private String comment;
     private LocalDateTime reviewDate;
     private UserDto user;
-    private Long bookId; // Only include the book ID
+    private Long bookId;
     private String bookTitle;
 }
