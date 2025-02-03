@@ -8,6 +8,7 @@ import pl.cieszk.booknest.features.review.domain.Review;
 import pl.cieszk.booknest.features.review.domain.dto.ReviewRequestDto;
 import pl.cieszk.booknest.features.review.domain.dto.ReviewResponseDto;
 
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 @RestController
@@ -28,5 +29,19 @@ public class ReviewController {
     public ResponseEntity<ReviewResponseDto> addReview(@RequestBody ReviewRequestDto request) {
         ReviewResponseDto review = reviewService.addReview(request);
         return ResponseEntity.ok(review);
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public ResponseEntity<ReviewResponseDto> updateReview(@RequestBody ReviewRequestDto requestDto, @PathVariable Long id) throws AccessDeniedException {
+        ReviewResponseDto review = reviewService.updateReview(requestDto, id);
+        return ResponseEntity.ok(review);
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    public ResponseEntity<Void> deleteReview(@PathVariable Long id) throws AccessDeniedException {
+        reviewService.deleteReview(id);
+        return ResponseEntity.noContent().build();
     }
 }

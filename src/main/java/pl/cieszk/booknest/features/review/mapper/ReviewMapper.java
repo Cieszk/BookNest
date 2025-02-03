@@ -2,6 +2,7 @@ package pl.cieszk.booknest.features.review.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import pl.cieszk.booknest.features.auth.domain.User;
 import pl.cieszk.booknest.features.auth.domain.dto.UserDto;
 import pl.cieszk.booknest.features.review.domain.Review;
@@ -22,4 +23,6 @@ public interface ReviewMapper {
     UserDto toUserDto(User user);
 
     Review toReviewEntity(ReviewRequestDto reviewRequestDto);
+
+    void updateEntity(@MappingTarget Review review, ReviewRequestDto reviewRequestDto);
 }
