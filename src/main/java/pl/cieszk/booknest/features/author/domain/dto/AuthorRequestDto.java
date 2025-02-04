@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AuthorSummaryDto {
-    Long authorId;
-    String firstName;
-    String lastName;
+public class AuthorRequestDto {
+    private String firstName;
+    private String lastName;
+    private String nationality;
+    private String biography;
 }
