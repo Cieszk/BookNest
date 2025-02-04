@@ -9,6 +9,7 @@ import pl.cieszk.booknest.features.book.domain.enums.BookStatus;
 import pl.cieszk.booknest.features.loan.domain.BookLoan;
 import pl.cieszk.booknest.features.reservation.domain.Reservation;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -35,5 +36,23 @@ public class BookInstance {
 
     @OneToMany(mappedBy = "bookInstance", cascade = CascadeType.ALL)
     private Set<BookLoan> bookLoans;
+
+    public boolean isAvailable() {
+        return !isReserved() && !isLoaned() && bookStatus == BookStatus.ACTIVE;
+    }
+
+    public boolean isReserved() {
+        return reservation != null
+                && reservation.getReservationDate().isBefore(LocalDateTime.now())
+                && (reservation.getReturnDate() == null
+                    || reservation.getReturnDate().isAfter(LocalDateTime.now()));
+    }
+
+    public boolean isLoaned() {
+        return bookLoans != null
+                && bookLoans.stream().anyMatch(loan ->
+                loan.getReturnDate() == null
+                    || loan.getDueDate().isAfter(LocalDateTime.now()));
+    }
 
 }

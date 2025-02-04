@@ -1,5 +1,6 @@
 package pl.cieszk.booknest.features.auth;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -47,5 +48,10 @@ public class AuthService {
         return AuthResponse.builder()
                 .token(jwtToken)
                 .build();
+    }
+
+    public User getUserById(Long id) {
+        return userRepository.findById(Math.toIntExact(id))
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
     }
 }
