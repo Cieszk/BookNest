@@ -6,6 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class CategorySummaryDto {
+    Long categoryId;
     String name;
     String description;
 }
