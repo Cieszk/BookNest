@@ -9,6 +9,7 @@ import pl.cieszk.booknest.features.book.domain.BookInstance;
 import pl.cieszk.booknest.features.book.domain.dto.BookInstanceRequestDto;
 import pl.cieszk.booknest.features.book.domain.dto.BookInstanceSummaryDto;
 import pl.cieszk.booknest.features.book.domain.enums.BookStatus;
+import pl.cieszk.booknest.features.book.mapper.BookInstanceMapper;
 
 import java.util.List;
 
@@ -17,6 +18,7 @@ import java.util.List;
 public class BookInstanceService {
     private final BookInstanceRepository bookInstanceRepository;
     private final BookRepository bookRepository;
+    private final BookInstanceMapper bookinstanceMapper;
 
     @Transactional(readOnly = true)
     public BookInstance findAvailableInstance(Long bookId) {
@@ -62,5 +64,10 @@ public class BookInstanceService {
         if (currentStatus == BookStatus.DESTROYED && newStatus == BookStatus.ACTIVE) {
             throw new IllegalStateException("Cannot change status: Book is destroyed");
         }
+    }
+
+    public List<BookInstanceSummaryDto> getAllInstancesForTheBook(Long id) {
+        List<BookInstance> instances = bookInstanceRepository.findByBook_BookId(id);
+        return bookinstanceMapper.toResponseDtoList(instances);
     }
 }
